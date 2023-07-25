@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const SearchBar = (props) => {
-  
+
 
   return (
     <div className="form">
@@ -14,7 +14,7 @@ const SearchBar = (props) => {
         />
       </div>
       <div>
-        <input type="checkbox" />
+        <input onChange={(e)=> props.showStockOnly(e)} type="checkbox" />
         <label htmlFor="stock-only">Show only in stock</label>
       </div>
     </div>

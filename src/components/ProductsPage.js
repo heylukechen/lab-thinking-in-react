@@ -5,7 +5,7 @@ import { useState } from 'react';
 import jsonData from '../data.json';
 
 const ProductsPage = () => {
-//m
+  //m
   const [products, setProducts] = useState(jsonData);
   //have a back-up state varibles and not change the jsonData forever
   const [anotherProducts, setAnotherProducts] = useState(jsonData);
@@ -22,10 +22,27 @@ const ProductsPage = () => {
     //toLowerCase improvements
   }
 
+  function showStockOnly(e) {
+    const copy = [...anotherProducts];
+
+    if (e.target.checked === true) {
+      const newProduct = copy.filter((item) => {
+        return item.inStock === true;
+      });
+      setProducts(newProduct);
+    } else {
+      setProducts(copy);
+    }
+  }
+
   return (
     <div>
       <h1>IronStore</h1>
-      <SearchBar searchItems={searchItems} products={products} />
+      <SearchBar
+        searchItems={searchItems}
+        showStockOnly={showStockOnly}
+        products={products}
+      />
       <ProductTable products={products} />
     </div>
   );
